@@ -13,12 +13,12 @@ model_face = YOLO('models/yolov8n-face.pt')
 # points_polygon = [[[1915, 1078], [1915, 740], [1292, 841], [1128, 1075], [1913, 1075]]]
 
 # Inicie a captura da stream RTSP
-cap = cv2.VideoCapture("WalkQueens.mkv")
+cap = cv2.VideoCapture("toronto_02.mkv")
 
-detection_threshold = 0.65
+detection_threshold = 0.7
 
 # Defina o nome base para as imagens que serão salvas
-nome_base = 'queens'
+nome_base = 'toronto_02'
 nome_count = 0
 frame_count = 0
 
@@ -26,7 +26,7 @@ frame_count = 0
 while True:
     # Leia um frame da stream
     ret, frame = cap.read()
-    print(frame.shape)
+    # print(frame.shape)
 
     results = model_face(source=frame, verbose=False)
 
@@ -52,7 +52,7 @@ while True:
 
             if len(r):
                 face = frame[x2:x4, x1:x3]
-                if frame_count % 40 == 0:
+                if frame_count % 240 == 0:
                     # Salve a face em um arquivo .jpg com o nome base + o número da face detectada
                     cv2.imwrite("data/" + nome_base + '_' + str(nome_count) + '.jpg', face)
                     nome_count += 1
@@ -61,7 +61,7 @@ while True:
 
     # Incrementa o contador de frames e reseta quando for igual a 60
     frame_count += 1
-    if frame_count == 40:
+    if frame_count == 240:
         frame_count = 0
 
     # Mostre o frame com as faces detectadas
