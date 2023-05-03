@@ -8,10 +8,6 @@ import time
 # Cria o detector de faces
 model_face = YOLO('models/yolov8n-face.pt')
 
-# # Defina a stream RTSP a ser lida
-# flex = u"rtsp://admin:through77@flexpaineis01.ddns.net:554/cam/realmonitor?channel=1&subtype=0"
-# points_polygon = [[[1915, 1078], [1915, 740], [1292, 841], [1128, 1075], [1913, 1075]]]
-
 # Inicie a captura da stream RTSP
 cap = cv2.VideoCapture("toronto_02.mkv")
 
